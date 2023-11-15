@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer>
+    <footer className="footer">
       <div>
         <img src="/assets/Logo.svg" alt="logo"></img>
       </div>

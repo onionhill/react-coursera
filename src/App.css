@@ -1,38 +1,82 @@
-.App {
-  text-align: center;
+/* styles.css */
+
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#root {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Header, Main, Footer */
+  grid-template-columns: 1fr; /* Single column layout */
+
+  min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+  margin: 0 auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.header,
+.main,
+.footer {
+  padding: 20px;
+  border: 1px solid #ddd;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.header {
+  grid-row: 1; /* Place the header in the first row */
+  display: grid;
+  grid-template-columns: auto 1fr; /* Logo, Nav */
+  align-items: center; /* Center items vertically within the header */
+  width: 100%; /* Allow the header to take the full width if needed */
+  max-width: 980px; /* Adjust the max-width as per your design */
+  margin: 0 auto;
 }
 
-.App-link {
-  color: #61dafb;
+.logo {
+  max-width: 100%; /* Ensure the logo does not exceed its container width */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.nav {
+  color: #333;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Display items horizontally */
+  justify-content: center; /* Center the items horizontally */
+  align-items: center; /* Center the items vertically */
+}
+
+.nav a {
+  text-decoration: none;
+  color: #333;
+  padding: 15px;
+  display: block;
+}
+
+.nav a:hover {
+  color: #555;
+}
+
+/* Style the navigation items */
+.nav a {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Add some spacing between the navigation items */
+.nav a + a {
+  margin-left: 20px;
+}
+
+/* Remove background color */
+
+.main {
+  grid-row: 2; /* Place the main content in the second row */
+}
+
+.footer {
+  grid-row: 3; /* Place the footer in the third row */
 }
