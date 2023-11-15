@@ -3,8 +3,7 @@ import React from "react";
 function Header() {
   return (
     <header>
-      <h1>Header</h1>
-      <img></img>
+      <img src="/assets/Logo.svg" alt="logo"></img>
     </header>
   );
 }
