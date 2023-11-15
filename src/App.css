@@ -1,4 +1,8 @@
 /* styles.css */
+:root {
+  --green: #495E57;
+  --yellow: #F4CE14;
+}
 
 body {
   margin: 0;
@@ -6,19 +10,19 @@ body {
 }
 
 #root {
-  display: grid;
-  grid-template-rows: auto 1fr auto; /* Header, Main, Footer */
-  grid-template-columns: 1fr; /* Single column layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 980px; /* Set your desired max-width */
+  margin: 0 auto; /* Center the container horizontally */
 
-  min-height: 100vh; /* Ensure the container takes at least the full viewport height */
-  margin: 0 auto;
 }
 
 .header,
 .main,
 .footer {
-  padding: 20px;
-  border: 1px solid #ddd;
+  width: 100%;
 }
 
 .header {
@@ -26,9 +30,7 @@ body {
   display: grid;
   grid-template-columns: auto 1fr; /* Logo, Nav */
   align-items: center; /* Center items vertically within the header */
-  width: 100%; /* Allow the header to take the full width if needed */
-  max-width: 980px; /* Adjust the max-width as per your design */
-  margin: 0 auto;
+
 }
 
 .logo {
@@ -79,4 +81,37 @@ body {
 
 .footer {
   grid-row: 3; /* Place the footer in the third row */
+}
+
+.FoodItems{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.reviews{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.hero {
+  background-color: var(--green); /* Add your desired background color */
+  width: 100vw; /* 100% of the viewport width */
+  margin-left: calc(-50vw + 50%); /* Center the element */
+  margin-right: calc(-50vw + 50%);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.hero-content {
+  max-width: 980px; /* Set your desired max-width */
+  margin: 0 auto; /* Center the content horizontally */
+}
+
+.hero-content h1, .hero-content h3{
+  color: var(--yellow);
+}
+
+.heroImage{
+  width: 200px;
+  height: 200px;
 }
