@@ -41,11 +41,12 @@ const Dish = () => {
             <img src={dish.image} alt={dish.title} />
           </div>
           <div className="dish-card-text">
-            <h3>{dish.title}</h3>
-            <h3>{dish.price}</h3>
+            <div className="dish-card-text-title">
+              <h3>{dish.title}</h3>
+              <h3 className="dish-price">{dish.price}</h3>
+            </div>
             <p>{dish.description}</p>
           </div>
-
           <button>{dish.order}</button>
         </div>
       </>
