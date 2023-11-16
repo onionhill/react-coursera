@@ -1,0 +1,15 @@
+.specials{
+    width: 85%;
+    margin: 0 auto;
+    padding: 100px 0;
+}
+
+.specials-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-container-specials{
+    padding: 15px 45px;
+}
