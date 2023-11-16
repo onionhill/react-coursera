@@ -6,16 +6,18 @@
   box-sizing: border-box;
 }
 
-body {
+body, input{
   font-family: 'Karla', sans-serif;
+  color: #333;
+
+}
+
+body {
   font-size: 16pt;
-  color: #333333;
 }
 
 input {
-  font-family: "karla", sans-serif;
   font-size: 15px;
-  color: #333;
 }
 
 ::placeholder {
