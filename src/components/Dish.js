@@ -5,6 +5,8 @@ import Salad from "../components/assets/salad.jpg";
 import Bruschetta1 from "../components/assets/bruschetta1.jpg";
 import Creme from "../components/assets/creme.jpg";
 
+import { MdDeliveryDining } from "react-icons/md";
+
 const Dish = () => {
   const menuItems = [
     {
@@ -46,8 +48,11 @@ const Dish = () => {
               <h3 className="dish-price">{dish.price}</h3>
             </div>
             <p>{dish.description}</p>
+            <h4>
+              {dish.order}
+              <MdDeliveryDining size={30} style={{ marginLeft: "10px" }} />
+            </h4>
           </div>
-          <button>{dish.order}</button>
         </div>
       </>
     );

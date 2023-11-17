@@ -16,9 +16,9 @@ function Hero() {
           <button class="btn">Reserve a Table</button>
         </div>
         <div className="hero-right">
-          <div className="image-box">
+          <dcoiv className="image-box">
             <img src={HeroImage} alt="Serving delicious dish" />
-          </div>
+          </dcoiv>
         </div>
       </div>
     </div>
