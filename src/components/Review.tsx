@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 
+
 interface ReviewProps {
   name: string;
   rating: number;
@@ -7,7 +8,7 @@ interface ReviewProps {
   image: string;
 }
 
-const Review: FC<ReviewProps> = ({ name, rating, review, image }) => {
+const Review: FC<ReviewProps> = ({  name, rating, review, image }) => {
     const stars: { [key: number]: string } = {
         1: "★☆☆☆☆",
         2: "★★☆☆☆",
@@ -17,12 +18,16 @@ const Review: FC<ReviewProps> = ({ name, rating, review, image }) => {
       };
 
     return (
-        <div className="review">
-            <h3>{name}</h3>
-            <div>
-                <span>{stars[rating]}</span>
-                <span>{review}</span>
-            </div>
+        <div  className="review">
+                <div className="review-image-container">
+                    <img src={image} className="review-image" alt={name}/>
+                    <h3>{name}</h3>
+                </div>
+                <div className="review-text">
+                    <span>{stars[rating]}</span>
+                    <br/>
+                    <span>{review}</span>
+                </div>
         </div>
     );
 }
