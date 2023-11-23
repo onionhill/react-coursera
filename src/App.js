@@ -1,18 +1,18 @@
 import "./App.css";
 
-import Home from "./components/routes/Home"
-import Reservations from "./components/routes/Reservations";
+import HomePage from "./components/pages/HomePage.tsx";
+import ConfirmationPage from "./components/pages/ConfirmationPage.tsx";
+import ReservationPage from "./components/pages/ReservationPage.tsx"
 
 import {Route, Routes} from "react-router-dom";
 
 function App() {
   return (
-    <>
     <Routes>
-      <Route path = "/" element = {<Home />}/>
-      <Route path = "/reservations" element = {<Reservations />}/>
+      <Route element={<HomePage/>} path="/"/>
+      <Route element={<ReservationPage/>} path="/reservations"/>
+      <Route element={<ConfirmationPage/>} path="/confirmation"/>
     </Routes>
-  </>
   );
 }
 

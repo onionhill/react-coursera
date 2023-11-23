@@ -2,64 +2,93 @@
 import React from 'react';
 
 import "./styles/ReservationsContent.scss";
-import {useForm} from "react-hook-form";
 
-import { yupResolver } from "@hookform/resolvers/yup"
+import { useFormik } from "formik";
 import * as yup from "yup";
-
-
-const formSchema = yup.object({
-    name: yup.string().required("Please enter your name"),
-    email: yup.string().required("Email is a required field").email("Email is not valid"),
-    telephone: yup.string().required("Telephone is a required field!").matches(/^(\+\d{2,3}\s)?\(?\d{3}\)?[\s.-]\d{2}[\s.-]\d{3}[\s.-]\d{4}$/, "Phone number must match the form 233 00 000 0000"),
-    guests: yup.number().min(1, "There must be at least 1 guest").max(10, "Maximum 10 guests per table").required("Please specify number of guests"),
-    data: yup.string().required("Please select date and time")
-})
+import { useNavigate, NavigateFunction } from "react-router-dom";
 
 
 const Form = () => {
-    const { handleSubmit, register, formState: { errors } } = useForm({
-        resolver: yupResolver(formSchema)
-    })
+    const navigate: NavigateFunction = useNavigate();
+    const formik = useFormik({
+        initialValues: {
+          date: '',
+          email: '',
+          name: '',
+          guests:0,
+          telephone: '',
+          occasion: "",
+        },
+        onSubmit: (values) => {
+            console.log('submit...', values);
+            navigate("/confirmation");
+        },
+        validationSchema: yup.object({
+            name: yup.string().required("Please enter your name"),
+            email: yup.string().required("Email is a required field").email("Email is not valid"),
+            telephone: yup.string().required("Telephone is a required field!").matches(/^-?\d+(\.\d+)?$/, "Phone number must match the form 12345678"),
+            guests: yup.number().min(1, "There must be at least 1 guest").max(10, "Maximum 10 guests per table").required("Please specify number of guests"),
+            date: yup.string().required("Please select date and time"),
+            occasion: yup.string().oneOf(["Select occasion", "birthday", "engagement", "anniversary"])
+        })
+      });
+    
 
-    const formSubmit = (data) => {
-        console.table(data)
-    }
+
 
     return (
-        <form onSubmit={handleSubmit(formSubmit)} >
+        <form onSubmit={formik.handleSubmit} noValidate>
             <fieldset>
                 <div className="field">
                     <label htmlFor="name">Full Name </label>
-                    <input type="text" placeholder="Your name..." {...register("name")} />
-                    <span className="error-message">{errors.name?.message}</span>
+                    <input id="name" type="text" placeholder="Your name..." {...formik.getFieldProps("name") } />
+                    <span className="error-message">
+                    {formik.touched.name && formik.errors.name}
+                    </span>
                 </div>
                 <div className="field">
-                    <label htmlFor="name">Email </label>
-                    <input type="text" placeholder="Your name..." {...register("email")} />
-                    <span className="error-message">{errors.email?.message}</span>
-                </div>
+                    <label htmlFor="email">Email </label>
+                    <input id="email" type="text" placeholder="Your email..." {...formik.getFieldProps("email") } />
+                    <span className="error-message">
+                        {formik.touched.email && formik.errors.email}
+                    </span>                
+                    </div>
                 <div className="field">
-                    <label htmlFor="name">Telephone </label>
-                    <input type="text" placeholder="Your phone number..." {...register("telephone")} />
-                    <span className="error-message">{errors.telephone?.message}</span>
+                    <label htmlFor="telephone">Telephone </label>
+                    <input id="telephone" type="text" placeholder="Your telephone number..." {...formik.getFieldProps("telephone") } />
+                    <span className="error-message">
+                    {formik.touched.telephone && formik.errors.telephone}
+                    </span>
+                </div>
+
+                <div className="field occasion">                    
+                    <label htmlFor="occasion">Occasion (optional) </label>
+                    <div className="occasion-container">
+                        <select id="occasion" {...formik.getFieldProps("occasion")}>
+                            <option value="select">Select occasion</option>
+                            <option value="birthday">Birthday</option>
+                            <option value="engagement">Engagement</option>
+                            <option value="anniversary">Anniversary</option>
+                        </select>
+                    </div>
+                    <span className="error-message">
+                    {formik.touched.occasion && formik.errors.occasion}
+                    </span>                   
                 </div>
 
                 <div className="field">
-                    <label htmlFor="name">Occasion (optional) </label>
-                    <input type="text" placeholder="Your phone number..." {...register("telephone")} />
-                    <span className="error-message">{errors.telephone?.message}</span>
-                </div>
-
-                <div className="field">
-                    <label htmlFor="name">Number of guests </label>
-                    <input type="text" placeholder="2" {...register("guests")} />
-                    <span className="error-message">{errors.guests?.message}</span>
+                    <label htmlFor="guests">Number of guests </label>
+                    <input id="guests" type="number" placeholder="2" {...formik.getFieldProps("guests")} />
+                    <span className="error-message">
+                        {formik.touched.guests && formik.errors.guests}
+                    </span>     
                 </div>
                 <div className="field">
                     <label htmlFor="date">Date & Time</label>
-                    <input type="datetime-local" name="date" {...register("date")} />
-                    <span className="error-message">{errors.date?.message}</span>
+                    <input id="date" type="datetime-local" name="date"  {...formik.getFieldProps("date")} />
+                    <span className="error-message">
+                        {formik.touched.date && formik.errors.date}
+                    </span>     
                 </div>
                 <button className="reserve-btn" type="submit">Reserve</button>
 

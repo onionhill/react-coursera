@@ -48,6 +48,80 @@
             margin-bottom: 30px;
         }
     }
+
+    fieldset{
+        border: none;
+    }
+
+    .field{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 20px;
+
+        label{
+            font-size: 17px;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+    }
+
+    input{
+        padding: 10px;
+        border: 1px solid rgba(51,51,51,0.3);
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    input[type=datetime-local] {
+        color: #949494
+    }
+
+    select{
+        padding: 10px;
+        outline: none;
+        border: none;
+        width: 100%;
+        font-size: 15px;
+        color: black;
+    }
+    
+    .occasion {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .occasion-container {
+        padding-right: 10px;
+        border: 1px solid rgba(51,51,51,0.3);
+        border-radius: 5px;
+    }
+
+    
+    .error-message {
+        font-size: 15px;
+        color: red;
+        margin-top: 5px;
+    }
+
+    .reserve-btn{
+        width: 100%;
+        padding: 20px;
+        cursor: pointer;
+        background-color: #333;
+        border: none;
+        border-radius: 5px;
+        font-size: 15px;
+        font-weight: bold;
+        color:#fff;
+    }
+
+    .reserve-btn:hover {
+        background-color: #495e57;
+        transition: 0.3s;
+    }
+    
+
 }
 
 
@@ -58,6 +132,13 @@
         width: 100%;
         padding-left: 30px;
         padding-right: 30px;
+
+        
+    .form {
+        width: 100%;
+        margin-top: -50px
+    }
+
     }
 
     .text {
@@ -69,13 +150,5 @@
         margin-bottom: 0;
     }
 
-    .form {
-        width: 100%;
-        margin-top: -50px
-    }
 
-    .guestsdate {
-        display: flex;
-        flex-direction: column;
-    }
 }
