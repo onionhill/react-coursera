@@ -1,9 +1,15 @@
 import React from "react";
-
+import Header from "../Header.tsx";
+import Footer from "../Footer.tsx";
+import Confirmation from "../Confirmation.tsx";
 
 function HomePage() {
   return (
-   <p>THANK YOU</p>
+    <>
+        <Header />
+        <Confirmation />
+        <Footer />
+    </>
   );
 }
 

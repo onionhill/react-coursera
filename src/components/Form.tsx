@@ -20,7 +20,7 @@ const Form = () => {
           occasion: "",
         },
         onSubmit: (values) => {
-            console.log('submit...', values);
+            localStorage.setItem("Bookings", JSON.stringify(values));
             navigate("/confirmation");
         },
         validationSchema: yup.object({
