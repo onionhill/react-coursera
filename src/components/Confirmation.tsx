@@ -12,7 +12,8 @@ const Confirmation = () => {
         name: string, 
         guests: number, 
         telephone: string, 
-        occasion: string
+        occasion: string,
+        time: string
     }>();
 
     useEffect(() => {
@@ -32,6 +33,7 @@ const Confirmation = () => {
                 <span><strong>Occasion:</strong> {booking?.occasion}</span>
                 <span><strong>Guests:</strong> {booking?.guests}</span>
                 <span><strong>Date:</strong> {booking?.date}</span>
+                <span><strong>Time:</strong> {booking?.time}</span>
 
             </div>
 

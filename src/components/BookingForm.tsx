@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useEffect,FC, Dispatch} from 'react';
 
 import "./styles/ReservationsContent.scss";
 
@@ -8,7 +8,15 @@ import * as yup from "yup";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 
 
-const Form = () => {
+interface BookingFormProps{
+    dispatch: Dispatch<{type:string, date:Date}>,
+    availableTimes: {
+        times: string[];
+    }
+}
+
+const BookingForm: FC<BookingFormProps> = ({ availableTimes, dispatch, ...props }): JSX.Element => {
+
     const navigate: NavigateFunction = useNavigate();
     const formik = useFormik({
         initialValues: {
@@ -18,6 +26,7 @@ const Form = () => {
           guests:0,
           telephone: '',
           occasion: "",
+          time: ''
         },
         onSubmit: (values) => {
             localStorage.setItem("Bookings", JSON.stringify(values));
@@ -28,12 +37,15 @@ const Form = () => {
             email: yup.string().required("Email is a required field").email("Email is not valid"),
             telephone: yup.string().required("Telephone is a required field!").matches(/^-?\d+(\.\d+)?$/, "Phone number must match the form 12345678"),
             guests: yup.number().min(1, "There must be at least 1 guest").max(10, "Maximum 10 guests per table").required("Please specify number of guests"),
-            date: yup.string().required("Please select date and time"),
+            date: yup.string().required("Please select date"),
+            time: yup.string().required("Please select time"),
             occasion: yup.string().oneOf(["Select occasion", "birthday", "engagement", "anniversary"])
         })
       });
-    
-
+    console.log(formik.values.date,'ad');
+      useEffect(() => {
+        dispatch({ type: "UPDATE_TIMES", date: new Date(formik.values.date) });
+      }, [dispatch, formik.values.date]);
 
 
     return (
@@ -84,11 +96,24 @@ const Form = () => {
                     </span>     
                 </div>
                 <div className="field">
-                    <label htmlFor="date">Date & Time</label>
-                    <input id="date" type="datetime-local" name="date"  {...formik.getFieldProps("date")} />
+                    <label htmlFor="date">Date</label>
+                    <input id="date" type="date" name="date"  {...formik.getFieldProps("date")} />
                     <span className="error-message">
                         {formik.touched.date && formik.errors.date}
                     </span>     
+                </div>
+                <div className="field">
+                    <label htmlFor="time">Time</label>
+                    <div className="occasion-container">
+                        <select id="time" {...formik.getFieldProps("time")}>
+                          {availableTimes.map( (time) => {
+                            return <option key={time} value={time}>{time}</option>
+                          })}
+                        </select>
+                    </div>
+                    <span className="error-message">
+                    {formik.touched.time && formik.errors.time}
+                    </span>    
                 </div>
                 <button className="reserve-btn" type="submit">Reserve</button>
 
@@ -101,4 +126,4 @@ const Form = () => {
 }
 
 
-export default Form
+export default BookingForm
